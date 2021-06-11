@@ -1,4 +1,5 @@
 var jsforce = require('jsforce');
+var path = require('path');
 var express = require('express');
 var config = require('./config.js');
 
@@ -15,7 +16,6 @@ const port = process.env.PORT || 3000;
 
 var replayId = -1; // -1 = Only New messages | -2 = All Window and New
 var conn = new jsforce.Connection();
-const port = process.env.PORT || 3000;
 app.use(express.static(__dirname + '/public'));// Serve static files
 
  conn.login(user, pass + securityToken, function (err, res) {
