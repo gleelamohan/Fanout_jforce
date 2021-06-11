@@ -2,7 +2,6 @@
   "name":"Fan-out pattern Demo",
   "Description":"This app fires the message to all the clients",
   "env": {
-    
     "USERNAME": {
       "description":"Enter Salesorce org username",
       "value":""
