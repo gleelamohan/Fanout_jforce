@@ -11,8 +11,9 @@
       "value":""
     },
     "SECURITYTOKEN": {
-      "description":"Enter Salesorce Security token, leave it as 'NA' for SDOs and Production orgs",
-      "value":"NA"
+      "description":"Enter Salesorce Security token, leave it as blank for SDOs and Production orgs",
+      "value":"",
+      "required": false
     }
   }
 }
