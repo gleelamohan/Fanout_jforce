@@ -11,12 +11,20 @@ var securityToken = config.SECURITYTOKEN ;
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+
 var socket = io.sockets.on('connection', function (socket) {});
+
 const port = process.env.PORT || 3000;
 
 var replayId = -1; // -1 = Only New messages | -2 = All Window and New
 var conn = new jsforce.Connection();
 app.use(express.static(__dirname + '/public'));// Serve static files
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
  conn.login(user, pass + securityToken, function (err, res) {
 	console.log('loggedin');
