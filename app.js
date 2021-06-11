@@ -2,6 +2,7 @@
 const { SlowBuffer } = require('buffer');
 var jsforce = require('jsforce');
 var express = require('express');
+var config = require('./config.js');
 
 var channel = '/data/CaseChangeEvent';
 var user = config.USERNAME;
