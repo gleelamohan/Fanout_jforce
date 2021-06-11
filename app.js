@@ -6,7 +6,7 @@ var express = require('express');
 var channel = '/data/CaseChangeEvent';
 var user = config.USERNAME;
 var pass = config.PASSWORD;
-var securityToken = config.SECURITYTOKEN;
+var securityToken = config.SECURITYTOKEN != 'NA' ? config.SECURITYTOKEN: '' ;
 
 var app = express();
 var server = require('http').Server(app);
@@ -16,6 +16,7 @@ var socket = io.sockets.on('connection', function (socket) {});
 
 var replayId = -1; // -1 = Only New messages | -2 = All Window and New
 var conn = new jsforce.Connection();
+
 
 conn.login(user, pass + securityToken, function (err, res) {
 	console.log('loggedin');
