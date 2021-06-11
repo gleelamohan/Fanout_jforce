@@ -14,15 +14,14 @@ var io = require('socket.io')(server);
 
 var socket = io.sockets.on('connection', function (socket) {});
 
-const port = process.env.PORT || 3000;
+//const port = process.env.PORT || 3000;
 
 var replayId = -1; // -1 = Only New messages | -2 = All Window and New
 var conn = new jsforce.Connection();
 app.use(express.static(__dirname + '/public'));// Serve static files
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use(function(req, res, next){
+  res.io = io;
   next();
 });
 
@@ -47,8 +46,16 @@ app.use(function(req, res, next) {
 	});
 });
 
+/*
+app.use('/', routes);
+
 app.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname + '/index.html'));
-});
+});*/
 
-app.listen(port, () => console.log(`listening on port ${port}!`)); 
+//app.listen(port, () => console.log(`listening on port ${port}!`)); 
+
+module.exports = {app: app, server: server, conn: conn, config: config};
+exports.conn = conn;
+exports.config = config;
+exports.socket = socket;
