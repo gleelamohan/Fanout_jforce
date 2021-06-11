@@ -11,12 +11,14 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var socket = io.sockets.on('connection', function (socket) {});
-
+const port = process.env.PORT || 3000;
 
 var replayId = -1; // -1 = Only New messages | -2 = All Window and New
 var conn = new jsforce.Connection();
+const port = process.env.PORT || 3000;
+app.use(express.static(__dirname + '/public'));// Serve static files
 
-conn.login(user, pass + securityToken, function (err, res) {
+ conn.login(user, pass + securityToken, function (err, res) {
 	console.log('loggedin');
 	if (err) {
 		return console.error(err);
@@ -36,3 +38,9 @@ conn.login(user, pass + securityToken, function (err, res) {
 		console.log('Data Sent!!');
 	});
 });
+
+app.get('/', function (req, res) {
+	res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+app.listen(port, () => console.log(`listening on port ${port}!`)); 
