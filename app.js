@@ -33,9 +33,9 @@ app.use(express.static(__dirname + '/public'));// Serve static files
 	]);
 
 	subscription = client.subscribe(channel, function (data) {
-		console.log('Received Data');
+		console.log('Received CDC Event');
 		socket.send(JSON.stringify(data));
-		console.log('Data Sent!!');
+		console.log('Data sent to clients!!');
 	});
 });
 
