@@ -1,4 +1,3 @@
-
-exports.USERNAME = 'mule-fire-forget@salesforce.demo';
-exports.PASSWORD = 'Salesforce1';
-exports.SECURITYTOKEN = '';
+exports.USERNAME = process.env.USERNAME;
+exports.PASSWORD = process.env.PASSWORD;
+exports.SECURITYTOKEN = process.env.SECURITYTOKEN;
